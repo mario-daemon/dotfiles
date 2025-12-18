@@ -17,12 +17,16 @@ rtp:prepend(lazypath)
 local colortheme = require('plugins.colortheme')
 
 require('lazy').setup({
-	colortheme.nord,
+	colortheme.gruvbox,
 	require 'plugins.neotree',
 	require 'plugins.lualine',
 	require 'plugins.treesitter',
-	--require 'plugins.whichkey',
+	require 'plugins.whichkey',
 	require 'plugins.telescope',
 	require 'plugins.indentlines',
-	require 'plugins.lsp'
+	require 'plugins.lsp',
+	require 'plugins.autocompletion',
+	require 'plugins.gitsigns',
+	require 'plugins.alpha',
+	require 'plugins.indent-blankline'
 })

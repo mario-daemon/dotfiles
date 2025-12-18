@@ -17,6 +17,8 @@ vim.o.cursorline = false -- highlight the current line
 vim.o.smartindent = true -- make indenting smarter again
 vim.o.showtabline = 1 -- show if there are at least two tabs
 vim.o.fileencoding = 'utf-8' -- the encoding written to a file
+vim.opt.hlsearch = true   -- highlight all matches
+vim.opt.incsearch = true  -- optional: show matches as you type
 
 -- =========================
 -- Autocommands
@@ -36,3 +38,12 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
+-- Stop auto-commenting on new lines
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "*",
+  callback = function()
+    -- Keep 'r' (continue comments on Enter), remove 'o' (don't continue on o/O)
+    vim.opt_local.formatoptions:remove("o")
+    vim.opt_local.formatoptions:append("r")
+  end,
+})
