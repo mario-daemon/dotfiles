@@ -1,0 +1,10 @@
+# Blank lines and comments are allowed
+
+# .stow-local-ignore (this file) ignores files or directories, it can be applied per-package
+# .stow-local-ignore (this file) overwrites ~/.stow-global-ignore if it exists
+# If neither the local or global ignore list exist, Stow will use its own built-in default ignore list
+
+.git
+.gitignore
+.directory
+README.md
