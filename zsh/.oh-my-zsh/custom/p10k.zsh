@@ -188,7 +188,7 @@
 
   ################################[ prompt_char: prompt symbol ]################################
   # Green prompt symbol if the last command succeeded.
-  typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND=7
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND=4
   # Red prompt symbol if the last command failed.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND=1
   # Default prompt symbol.
@@ -369,9 +369,9 @@
     if (( $1 )); then
       # Styling for up-to-date Git status.
       local       meta='%f'   # default foreground
-      local      clean='%3F'  # yellow foreground
+      local      clean='%6F'  # cyan foreground
       local   modified='%5F'  # magenta foreground
-      local  untracked='%6F'  # cyan foreground
+      local  untracked='%3F'  # yellow foreground
       local conflicted='%1F'  # red foreground
     else
       # Styling for incomplete and stale Git status.

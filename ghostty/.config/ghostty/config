@@ -70,6 +70,9 @@ shell-integration-features = no-cursor
 cursor-color = cell-foreground
 cursor-text = cell-background
 
+background-opacity = 0.85
+background-blur = true
+
 window-width = 102
 window-height = 30
 window-padding-x = 3
