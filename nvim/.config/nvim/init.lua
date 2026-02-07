@@ -17,7 +17,7 @@ rtp:prepend(lazypath)
 local colortheme = require('plugins.colortheme')
 
 require('lazy').setup({
-	colortheme.nord,
+	colortheme.gruvbox,
 	require 'plugins.neotree',
 	require 'plugins.lualine',
 	require 'plugins.treesitter',
