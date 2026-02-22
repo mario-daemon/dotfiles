@@ -170,6 +170,7 @@ return {
 				},
 			},
 			luau_lsp = {}, --luau lsp
+			rust_analyzer = {},
 
 			-- If these fail to install see :help mason-debugging and :checkhealth mason
 			--html = { filetypes = { 'html', 'twig', 'hbs' } },
