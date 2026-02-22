@@ -1,0 +1,19 @@
+metadata-file: ${USERDATA}/metadata/metadata.yaml
+pdf-engine: xelatex
+number-sections: true
+table-of-contents: true
+syntax-highlighting: idiomatic
+
+variables:
+  fontsize: 12pt
+  geometry:
+    - margin=1in
+  block-headings: true
+  documentclass: article
+
+include-in-header:
+  - ${USERDATA}/templates/pdf-snippets/code.tex
+  - ${USERDATA}/templates/pdf-snippets/textbox.tex
+  
+filters:
+  - ${USERDATA}/filters/textbox.lua

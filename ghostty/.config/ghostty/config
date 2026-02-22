@@ -78,4 +78,4 @@ window-height = 30
 window-padding-x = 3
 window-padding-y = 3
 confirm-close-surface = true
-
+window-inherit-working-directory = false

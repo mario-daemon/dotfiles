@@ -1,0 +1,80 @@
+\usepackage{xcolor}
+\usepackage{listings}
+
+\definecolor{codebg}{RGB}{245,245,245}
+\definecolor{codeframe}{RGB}{220,220,220}
+
+% Define Python, somehow doesnt work
+\lstdefinelanguage{Python}{
+  keywords={def, return, if, else, elif, for, while, import, as, from, class, try, except, finally, with, pass, break, continue, lambda, yield, raise, assert, True, False, None},
+  keywordstyle=\color{blue}\bfseries,
+  comment=[l]{\#},
+  commentstyle=\color{gray}\itshape,
+  string=[s]{"}{"},        % double-quoted strings
+  morestring=[s]{'}{'},    % single-quoted strings
+  stringstyle=\color{green!50!black},
+  sensitive=true
+}
+
+% Define Bash
+\lstdefinelanguage{Bash}{
+  keywords={if, then, else, elif, fi, for, while, do, done, function, return, exit, case, esac, in},
+  keywordstyle=\color{purple}\bfseries,
+  comment=[l]{\#},
+  commentstyle=\color{gray}\itshape,
+  string=[b]",
+  stringstyle=\color{orange!70!black},
+  morestring=[b]',
+  sensitive=true
+}
+
+% Define SQL
+\lstdefinelanguage{SQL}{
+  keywords={SELECT, INSERT, UPDATE, DELETE, FROM, WHERE, JOIN, ON, GROUP, BY, ORDER, ASC, DESC, CREATE, TABLE, DROP, ALTER, INTO, VALUES, SET, DISTINCT},
+  keywordstyle=\color{blue}\bfseries,
+  comment=[l]{--},
+  commentstyle=\color{gray}\itshape,
+  string=[b]',
+  stringstyle=\color{green!50!black},
+  sensitive=false
+}
+
+% Define PHP
+\lstdefinelanguage{PHP}{
+  keywords={<?php, echo, if, else, elseif, for, foreach, while, switch, case, break, continue, return, function, class, public, protected, private, static, var, new, try, catch, finally, throw, namespace, use},
+  keywordstyle=\color{magenta}\bfseries,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{gray}\itshape,
+  string=[s]{"}{"},          % double-quoted strings
+  morestring=[s]{'}{'},      % single-quoted strings
+  emph={$this, self, parent},
+  emphstyle=\color{red}\bfseries,
+  sensitive=true
+}
+
+% INI / config files, also does not work
+\lstdefinelanguage{ini}{
+  morecomment=[l]{;},         % semicolon comments
+  morecomment=[l]{\#},        % hash comments
+  commentstyle=\color{gray}\itshape,
+  sensitive=true,
+  morestring=[b]",            % double-quoted strings
+  stringstyle=\color{green!50!black},
+  keywords={}                  % no keywords for basic config
+}
+
+
+\lstset{
+  basicstyle=\small\ttfamily,
+  basewidth=0.5em,
+  breaklines=true,
+  breakatwhitespace=true,
+  backgroundcolor=\color{codebg},
+  frame=single,
+  rulecolor=\color{codeframe},
+  frameround=tttt,
+  framesep=5pt,
+  showstringspaces=false,
+  tabsize=2,
+}
