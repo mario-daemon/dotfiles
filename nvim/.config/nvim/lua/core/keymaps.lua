@@ -50,3 +50,7 @@ end, { expr = true, noremap = true })
 -- Optional: Move to the next/previous diagnostic error
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Previous Diagnostic" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Next Diagnostic" })
+
+-- Remap 'x' to delete without copying to the clipboard
+vim.keymap.set('n', 'x', '"_x')
+vim.keymap.set('v', 'x', '"_x')
