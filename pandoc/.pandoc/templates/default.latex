@@ -1,0 +1,271 @@
+$passoptions.latex()$
+\documentclass[
+$for(babel-otherlangs)$
+  $babel-otherlangs$,
+$endfor$
+$if(babel-lang)$
+  $babel-lang$,
+$endif$
+$if(fontsize)$
+  $fontsize$,
+$endif$
+$if(papersize)$
+  $papersize$paper,
+$endif$
+$for(classoption)$
+  $classoption$$sep$,
+$endfor$
+]{$documentclass$}
+$if(beamerarticle)$
+\usepackage{beamerarticle} % needs to be loaded first
+$endif$
+\usepackage{xcolor}
+$if(geometry)$
+\usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
+$endif$
+\usepackage{amsmath,amssymb}
+$if(cancel)$
+\usepackage{cancel}
+$endif$
+$--
+$-- section numbering
+$--
+$if(numbersections)$
+\setcounter{secnumdepth}{$if(secnumdepth)$$secnumdepth$$else$5$endif$}
+$else$
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+$endif$
+$fonts.latex()$
+$font-settings.latex()$
+$common.latex()$
+
+% ----- MY CUSTOM DEFINITIONS -----
+
+% --- HEADER & FOOTER CONFIG ---
+\usepackage{fancyhdr}    % For headers/footers
+\usepackage{lastpage}    % For "Page X of Y"
+\pagestyle{fancy}
+\fancyhf{} % Clear default header/footer
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% Left side of header (Current Section)
+\lhead{\itshape\leftmark}
+% Right side of header
+\rhead{$for(email)$$email$$sep$ \and $endfor$} 
+
+% Left side of footer (Copyright — License)
+\lfoot{\footnotesize 
+  $if(copyright)$
+    $copyright$
+  $endif$
+  $if(copyright)$$if(license)$ - $endif$$endif$
+  $if(license)$
+    $license$
+  $endif$
+}
+% Right side of footer (page X of Y)
+\rfoot{
+  $if(page_word)$$page_word$ $endif$
+  \thepage\ 
+  $if(of_word)$$of_word$ $endif$
+  \pageref{LastPage}
+}
+
+% --- TEXTBOX ---
+\usepackage[most]{tcolorbox}
+\newtcolorbox{textbox}[1]{
+  colback=white,
+  colframe=gray!75!black,
+  fonttitle=\bfseries,
+  title=#1,
+  enhanced,
+  attach boxed title to top left={yshift=-2mm, xshift=2mm},
+  boxed title style={colback=gray!75!black},
+  arc=1.5mm,
+  breakable
+}
+
+%--- CODE BLOCKS ---
+\usepackage{etoolbox} % Required for the "auto-wrap" magic
+\usepackage[most]{tcolorbox}
+
+\definecolor{codeframe}{RGB}{220,220,220}
+\definecolor{shadecolor}{RGB}{245,245,245} 
+
+% 1. Create the 'Shaded' environment if it doesn't exist
+\makeatletter
+\@ifundefined{Shaded}{
+  \newenvironment{Shaded}{}{}
+}{}
+\makeatother
+
+% 2. Redefine 'Shaded' as our master tcolorbox
+\renewenvironment{Shaded}{
+  \begin{tcolorbox}[
+    enhanced,
+    breakable,
+    colback=shadecolor,
+    colframe=codeframe,
+    boxrule=0.5pt,
+    arc=0mm,
+    sharp corners,
+    left=4pt,   % Slightly more padding for readability
+    right=4pt,
+    top=4pt,
+    bottom=4pt,
+    boxsep=0pt,
+    before skip=6pt,
+    after skip=6pt,
+	fontupper=\footnotesize
+  ]
+}{
+  \end{tcolorbox}
+}
+
+% 3. THE MAGIC: Automatically wrap plain verbatim blocks in our Shaded box
+\BeforeBeginEnvironment{verbatim}{\begin{Shaded}}
+\AfterEndEnvironment{verbatim}{\end{Shaded}}
+
+% If you use fvextra, it sometimes uses 'Verbatim' (capital V)
+\BeforeBeginEnvironment{Verbatim}{\begin{Shaded}}
+\AfterEndEnvironment{Verbatim}{\end{Shaded}}
+
+%--- WORD WRAPPING --
+
+
+% --- STYLE BLOCKQUOTES ---
+\renewenvironment{quote}{
+  \begin{tcolorbox}[
+    enhanced,
+    breakable,
+    colback=gray!5!white,   % Very light gray background
+    colframe=gray!40!white, % Muted gray left border
+    arc=0mm,
+    boxrule=0pt,
+    leftrule=3pt,           % The "quote bar" look
+    left=8pt,               % Space between bar and text
+    right=4pt,
+    top=4pt,
+    bottom=4pt,
+    before skip=10pt,
+    after skip=10pt,
+    fontupper=\footnotesize   % Matching your code block size
+  ]
+}{
+  \end{tcolorbox}
+}
+
+% --------- END CUSTOM ----------
+
+$for(header-includes)$
+$header-includes$
+$endfor$
+$after-header-includes.latex()$
+$hypersetup.latex()$
+$if(pdf-trailer-id)$
+
+\ifXeTeX
+\special{pdf:trailerid [ $pdf-trailer-id$ ]}
+\fi
+\ifPDFTeX
+\pdftrailerid{}
+\pdftrailer{/ID [ $pdf-trailer-id$ ]}
+\fi
+\ifLuaTeX
+\pdfvariable trailerid {[ $pdf-trailer-id$ ]}
+\fi
+$endif$
+
+$if(title)$
+\title{$title$$if(thanks)$\thanks{$thanks$}$endif$}
+$endif$
+$if(subtitle)$
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{$subtitle$}
+$endif$
+\author{$for(author)$$author$$sep$ \and $endfor$}
+$if(date)$
+  \date{$date$}
+$else$
+  \date{\today}
+$endif$
+
+\begin{document}
+$if(has-frontmatter)$
+\frontmatter
+$endif$
+$if(title)$
+\maketitle
+$if(abstract)$
+\begin{abstract}
+$abstract$
+\end{abstract}
+$endif$
+$endif$
+
+$for(include-before)$
+$include-before$
+
+$endfor$
+$if(toc)$
+$if(toc-title)$
+\renewcommand*\contentsname{$toc-title$}
+$endif$
+{
+$if(colorlinks)$
+$if(toccolor)$
+\hypersetup{linkcolor=$toccolor$}
+$endif$
+$endif$
+\setcounter{tocdepth}{$toc-depth$}
+\tableofcontents
+}
+$endif$
+$if(lof)$
+\listoffigures
+$endif$
+$if(lot)$
+\listoftables
+$endif$
+$if(linestretch)$
+\setstretch{$linestretch$}
+$endif$
+$if(has-frontmatter)$
+\mainmatter
+$endif$
+$body$
+
+$if(has-frontmatter)$
+\backmatter
+$endif$
+$if(nocite-ids)$
+\nocite{$for(nocite-ids)$$it$$sep$, $endfor$}
+$endif$
+$if(natbib)$
+$if(bibliography)$
+$if(biblio-title)$
+$if(has-chapters)$
+\renewcommand\bibname{$biblio-title$}
+$else$
+\renewcommand\refname{$biblio-title$}
+$endif$
+$endif$
+\bibliography{$for(bibliography)$$bibliography$$sep$,$endfor$}
+
+$endif$
+$endif$
+$if(biblatex)$
+\printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
+
+$endif$
+$for(include-after)$
+$include-after$
+
+$endfor$
+\end{document}

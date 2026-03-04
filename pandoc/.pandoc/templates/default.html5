@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$lang$" xml:lang="$lang$"$if(dir)$ dir="$dir$"$endif$>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+$for(author-meta)$
+  <meta name="author" content="$author-meta$" />
+$endfor$
+$if(date-meta)$
+  <meta name="dcterms.date" content="$date-meta$" />
+$endif$
+$if(keywords)$
+  <meta name="keywords" content="$for(keywords)$$keywords$$sep$, $endfor$" />
+$endif$
+$if(description-meta)$
+  <meta name="description" content="$description-meta$" />
+$endif$
+  <title>$if(title-prefix)$$title-prefix$ тАУ $endif$$pagetitle$</title>
+  <style>
+    $styles.html()$
+	
+	div.sourceCode, 
+    pre.sourceCode,
+	pre {
+	  background-color: lightgray;
+	  border-radius: 5px;
+	  padding: 6px;
+	}
+	
+	code.sourceCode,
+	code {
+	  font-family: Consolas;
+	  font-size: 85%;
+	}
+	
+		/* The main container (mimics tcolorbox) */
+	div.textbox {
+		border: 2px solid #404040;
+		border-radius: 20px;
+		margin: 1em 0 1em 0;
+		padding: 0.25em 0.75em 0.25em 0.75em;
+		background-color: white;
+	}
+
+	/* The Title box (mimics attach boxed title to top left) */
+	div.textbox > .title {
+		position: absolute;
+		top: -12px;
+		left: 10px;
+		background-color: #404040;
+		color: white;
+		padding: 2px 12px;
+		font-weight: bold;
+		font-family: sans-serif;
+		font-size: 0.9em;
+		border-radius: 3px;
+	}
+	
+	/* Style for ALL links */
+	a {
+	  color: blue;
+	}
+
+	/* Style ONLY for external links (links starting with http) */
+	a[href^="http"]::after {
+	  content: " ↗";
+	  font-size: 0.8em;
+	  color: gray;
+	}
+
+	/* Style ONLY for internal links (links NOT starting with http) */
+	a:not([href^="http"]) {
+	  color: black;
+	}
+	
+	/* The Subtitle Styling */
+	.subtitle {
+		display: block;
+		font-size: 1.2rem;
+		font-style: italic;
+	}
+	
+	/* Styling for the screen */
+	.document-header, .document-footer {
+		display: flex;
+		justify-content: space-between;
+		font-size: 0.85rem;
+		color: Black;
+		padding: 10px 0;
+		border-bottom: 2px solid #eee;
+		margin-bottom: 2rem;
+	}
+
+	.document-footer {
+		border-bottom: none;
+		border-top: 2px solid #eee;
+		margin-top: 3rem;
+	}
+
+  </style>
+$for(css)$
+  <link rel="stylesheet" href="$css$" />
+$endfor$
+$for(header-includes)$
+  $header-includes$
+$endfor$
+$if(math)$
+  $math$
+$endif$
+</head>
+<body>
+$for(include-before)$
+$include-before$
+$endfor$
+$if(title)$
+<header id="title-block-header">
+<header class="document-header">
+    <div class="header-left"><em>$title$</em></div>
+    <div class="header-right">$email$</span></div>
+</header>
+<h1 class="title">$title$</h1>
+$if(subtitle)$
+<p class="subtitle">$subtitle$</p>
+$endif$
+$for(author)$
+<p class="author">$author$</p>
+$endfor$
+$if(date)$
+<p class="date">$date$</p>
+$endif$
+$if(abstract)$
+<div class="abstract">
+<div class="abstract-title">$abstract-title$</div>
+$abstract$
+</div>
+$endif$
+</header>
+$endif$
+$if(toc)$
+<nav id="$idprefix$TOC" role="doc-toc">
+$if(toc-title)$
+<h2 id="$idprefix$toc-title">$toc-title$</h2>
+$endif$
+$table-of-contents$
+</nav>
+$endif$
+$body$
+$for(include-after)$
+$include-after$
+$endfor$
+<footer class="document-footer">
+    <div class="footer-left">
+        $if(copyright)$$copyright$$endif$
+        $if(copyright)$$if(license)$ - $endif$$endif$
+        $if(license)$$license$$endif$
+    </div>
+</footer>
+</body>
+</html>

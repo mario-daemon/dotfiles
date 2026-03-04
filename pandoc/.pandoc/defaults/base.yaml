@@ -1,0 +1,13 @@
+metadata-file: ${USERDATA}/metadata/metadata.yaml
+
+number-sections: true
+table-of-contents: true
+
+variables:
+  fontsize: 12pt
+  linkcolor: black
+  
+filters:
+  - ${USERDATA}/filters/date.lua
+  - ${USERDATA}/filters/textbox.lua
+  - ${USERDATA}/filters/page_num.lua

@@ -1,0 +1,4 @@
+standalone: true
+
+syntax-highlighting: pygments
+section-divs: true
