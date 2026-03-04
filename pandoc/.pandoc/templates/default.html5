@@ -117,7 +117,7 @@ $if(title)$
 <header id="title-block-header">
 <header class="document-header">
     <div class="header-left"><em>$title$</em></div>
-    <div class="header-right">$email$</span></div>
+    <div class="header-right">$email$</div>
 </header>
 <h1 class="title">$title$</h1>
 $if(subtitle)$
