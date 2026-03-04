@@ -9,5 +9,3 @@ variables:
   documentclass: article
   urlcolor: magenta
 
-include-in-header:
-  - ${USERDATA}/templates/pdf-snippets/code3.tex

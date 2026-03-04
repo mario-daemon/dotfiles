@@ -4,7 +4,8 @@ They go in `%appdata%\pandoc\` on Windows and `~/.pandoc/` on Linux.
 
 Requirements:
 
-- Latex distribution. MikTex on Windows, TeX Live on Linux.
+- Latex distribution. MikTex on Windows, TeXLive on Linux.
+    - With Spanish support
 - And some specific SVG Latex package that I forgot the name of, I will update this README when I remember.
 
 How to generate something:
