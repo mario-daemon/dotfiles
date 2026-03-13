@@ -50,8 +50,6 @@
 
 command = /usr/bin/zsh
 
-title = zsh - Ghostty
-
 font-family = Hack
 #font-family = FiraCode Nerd Font Mono
 #font-family = CaskaydiaMono Nerd Font
@@ -62,7 +60,7 @@ theme = GitHub Dark Dimmed
 #theme = Ghostty Default Style Dark
 
 mouse-hide-while-typing = true
-shell-integration-features = no-cursor
+shell-integration-features = no-cursor, no-title
 # the following 2 lines need the above line to not exist in order for them to work
 #cursor-style = block_hollow
 #cursor-style-blink = true
