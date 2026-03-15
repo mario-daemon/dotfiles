@@ -86,6 +86,30 @@ $common.latex()$
   breakable
 }
 
+% --- INLINE CODE ---
+
+\usepackage[most]{tcolorbox}
+\definecolor{inlinegray}{HTML}{f0f0f0}
+
+% 1. Define a "tight" box for inline use
+\newtcbox{\inlinebox}{
+  on line, 
+  arc=2pt,
+  colback=inlinegray,
+  colframe=inlinegray,
+  boxrule=0pt, 
+  boxsep=0pt,
+  left=3pt,
+  right=3pt,
+  top=1pt,
+  bottom=1pt,
+  before upper=\strut % Forces consistent height regardless of letters
+}
+
+% 2. Map Pandoc's commands to this box
+\newcommand{\passthrough}[1]{\texttt{#1}}
+\renewcommand{\texttt}[1]{\inlinebox{\small #1}}
+
 %--- CODE BLOCKS ---
 \usepackage{etoolbox} % Required for the "auto-wrap" magic
 \usepackage[most]{tcolorbox}
@@ -117,7 +141,7 @@ $common.latex()$
     boxsep=0pt,
     before skip=6pt,
     after skip=6pt,
-	fontupper=\footnotesize
+    fontupper=\footnotesize
   ]
 }{
   \end{tcolorbox}
