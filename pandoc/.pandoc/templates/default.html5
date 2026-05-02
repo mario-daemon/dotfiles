@@ -30,7 +30,7 @@ $endif$
 	
 	code.sourceCode,
 	code {
-	  font-family: Consolas;
+	  font-family: monospace;
 	  font-size: 85%;
 	}
 	
