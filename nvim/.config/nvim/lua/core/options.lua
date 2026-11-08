@@ -13,12 +13,13 @@ vim.o.hlsearch = false -- Set highlight on search
 vim.o.undofile = true -- Save undo history
 vim.o.scrolloff = 99 -- minimal number of screen lines to keep above and below the cursor
 vim.o.sidescrolloff = 8 -- minimal number of screen columns either side of cursor if wrap is `false`
-vim.o.cursorline = false -- highlight the current line
+vim.o.cursorline = true -- highlight the current line
 vim.o.smartindent = true -- make indenting smarter again
 vim.o.showtabline = 1 -- show if there are at least two tabs
 vim.o.fileencoding = 'utf-8' -- the encoding written to a file
 vim.opt.hlsearch = true   -- highlight all matches
 vim.opt.incsearch = true  -- optional: show matches as you type
+vim.g.have_nerd_font = true
 
 -- =========================
 -- Autocommands
