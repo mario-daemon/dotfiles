@@ -6,12 +6,12 @@ Useful Parameters:
 `-t <dir>` specify target directory, by default it is .. (which is why PWD should be ~/dotfiles)
 `-D <pkg>` delete symlinks from a package
 
-Deploy specific package, for instance, nvim:
+Deploy specific configuration, for instance, nvim:
 ```
 stow nvim
 ```
 
-Deploy all packages:
+Deploy all configurations:
 ```
 stow */
 ```
