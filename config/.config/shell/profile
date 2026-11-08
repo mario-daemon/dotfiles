@@ -1,0 +1,5 @@
+# In this order
+source ~/.config/shell/aliases
+source ~/.config/shell/env
+source ~/.config/shell/functions
+
