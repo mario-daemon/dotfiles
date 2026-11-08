@@ -50,17 +50,19 @@
 
 command = /usr/bin/zsh
 
+# note-to-self: should start using a nerdfont at some point
 font-family = Hack
 #font-family = FiraCode Nerd Font Mono
 #font-family = CaskaydiaMono Nerd Font
-font-size = 11
+font-size = 12
 #theme = Atom One Dark
 theme = GitHub Dark Dimmed
 #theme = Gruvbox Dark Hard
 #theme = Ghostty Default Style Dark
 
+link-previews = false
 mouse-hide-while-typing = true
-shell-integration-features = no-cursor, no-title
+shell-integration-features = no-cursor, no-title, ssh-env
 # the following 2 lines need the above line to not exist in order for them to work
 #cursor-style = block_hollow
 #cursor-style-blink = true
@@ -68,12 +70,20 @@ shell-integration-features = no-cursor, no-title
 cursor-color = cell-foreground
 cursor-text = cell-background
 
-background-opacity = 0.85
+background-opacity = 1
 background-blur = true
 
-window-width = 102
-window-height = 30
+window-width = 116
+window-height = 36
 window-padding-x = 3
 window-padding-y = 3
 confirm-close-surface = true
 window-inherit-working-directory = false
+
+
+# Srolling Mode
+keybind = ctrl+a=activate_key_table:scroll
+keybind = scroll/j=scroll_page_lines:2
+keybind = scroll/k=scroll_page_lines:-2
+keybind = scroll/escape=deactivate_key_table
+keybind = scroll/catch_all=deactivate_key_table

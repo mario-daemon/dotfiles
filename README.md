@@ -1,9 +1,9 @@
 Managed with GNU stow
 
-run GNU stow commands in this directory (must be ~/dotfiles)
+run GNU stow commands in this directory (PWD must be ~/dotfiles)
 
 Useful Parameters:
-`-t <dir>` specify target directory, by default it is .. (which is why current dir should be ~/dotfiles)
+`-t <dir>` specify target directory, by default it is .. (which is why PWD should be ~/dotfiles)
 `-D <pkg>` delete symlinks from a package
 
 Deploy specific package, for instance, nvim:
