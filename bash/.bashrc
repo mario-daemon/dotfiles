@@ -1,3 +1,1 @@
-prf="$HOME/.profile"
-[ -f "$prf" ] && source "$prf"
-unset prf
+[[ -f "$HOME"/.config/shell/profile ]] && source "$HOME"/.config/shell/profile
