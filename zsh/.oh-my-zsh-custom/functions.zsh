@@ -1,7 +1,7 @@
 # Install package
 pac() {
 	if [[ $1 == "-h" || $1 == "--help" ]]; then
-		echo "pac: Install package"
+		echo "pac: Install a package; pacman -S"
 		return 0
 	fi
     local pkgs
@@ -9,21 +9,10 @@ pac() {
     [ -n "$pkgs" ] && sudo pacman -S $pkgs
 }
 
-# Search info about a package
-pacs() {
-	if [[ $1 == "-h" || $1 == "--help" ]]; then
-		echo "pacs: Search info about a remote package"
-		return 0
-	fi
-    local pkgs
-    pkgs=$(pacman -Ss | fzf -m | awk '{print $1}' | cut -d'/' -f2) || return 0
-    [ -n "$pkgs" ] && pacman -Si $pkgs
-}
-
 # Remove package
 pacrm() {
 	if [[ $1 == "-h" || $1 == "--help" ]]; then
-		echo "pacrm: Remove package"
+		echo "pacrm: Remove a package; pacman -Rns"
 		return 0
 	fi
     local pkgs
@@ -31,10 +20,47 @@ pacrm() {
     [ -n "$pkgs" ] && sudo pacman -Rns $pkgs
 }
 
-# Get info about installed package
+# Show info about a package
+pacs() {
+	if [[ $1 == "-h" || $1 == "--help" ]]; then
+		echo "pacs: Show info about a remote package; pacman -Si"
+		return 0
+	fi
+    local pkgs
+    pkgs=$(pacman -Ss | fzf -m | awk '{print $1}' | cut -d'/' -f2) || return 0
+    [ -n "$pkgs" ] && pacman -Si $pkgs
+}
+
+# List files owned by a package
+pacl() {
+	if [[ $1 == "-h" || $1 == "--help" ]]; then
+		echo "pacl: List files owned by a package; pacman -Fl"
+		return 0
+	fi
+	local pkgs
+	pkgs=$(pacman -Qq | fzf -m) || return 0
+	[ -n "$pkgs" ] && pacman -Fl $pkgs | cut -d " " -f 2
+}
+
+# Search for packages by file (owning file)
+pacf() {
+	if [[ $1 == "-h" || $1 == "--help" ]]; then
+		echo "pacf <dir|file>: Search for a package by file; pacman -F"
+		return 0
+	fi
+	local file
+	if [[ -f "$1" ]]; then
+		file="$1"
+	else 
+		file=$(fzf --walker-root "${1:-.}") || return 0
+	fi
+	pacman -F -- "$file"
+}
+
+# Query info about an installed package
 pacq() {
 	if [[ $1 == "-h" || $1 == "--help" ]]; then
-		echo "pacq: Query info about a local package"
+		echo "pacq: Query info about a local package; pacman -Qq"
 		return 0
 	fi
     local pkgs
@@ -42,13 +68,14 @@ pacq() {
     [ -n "$pkgs" ] && pacman -Qikk $pkgs
 }
 
-# Get info about explicitly installed package
+# Query info about an explicitly installed package
 pacqe() {
 	if [[ $1 == "-h" || $1 == "--help" ]]; then
-		echo "pacqe: Query info about a local, explicitly installed, package"
+		echo "pacqe: Query info about a local, explicitly installed, package; pacman -Qqe"
 		return 0
 	fi
     local pkgs
     pkgs=$(pacman -Qqe | fzf -m) || return 0
     [ -n "$pkgs" ] && pacman -Qikk $pkgs
 }
+
