@@ -1,0 +1,52 @@
+
+" this enables common vim options which are turned on by default when no .vimrc file is used
+" more info with :help defaults.vim-explained
+source $VIMRUNTIME/defaults.vim
+
+
+" OPTIONS
+set number
+set relativenumber
+set expandtab "spaces instead of tabs
+set shiftwidth=4
+set softtabstop=4
+set tabstop=4
+
+" KEYMAPS
+let mapleader = " "
+nnoremap <leader>cd :Ex<CR>
+" fzf recent files
+nnoremap <C-P> :History<CR>
+" fzf ripgrep
+nnoremap <M-C-P> :Rg<CR>
+
+
+" PLUGINS
+"
+" function that downloads plugins (needs git installed)
+let s:plugin_dir = expand('~/.vim/plugged')
+function! s:ensure(repo)
+  let name = split(a:repo, '/')[-1]
+  let path = s:plugin_dir . '/' . name
+  if !isdirectory(path)
+    if !isdirectory(s:plugin_dir)
+      call mkdir(s:plugin_dir, 'p')
+    endif
+    execute '!git clone --depth=1 https://github.com/' . a:repo . ' ' . shellescape(path)
+  endif
+  execute 'set runtimepath+=' . fnameescape(path)
+endfunction
+
+call s:ensure('junegunn/fzf')
+call s:ensure('junegunn/fzf.vim')
+
+
+" ------ PERSONAL CHEATSHEET -------
+"
+" COMMANDS:
+"
+" :DiffOrig - Show diff between modified buffer and original file.
+" 
+" :help :helpgrep :tag - Search through help documentation.
+"
+" :tag quickref - Quick reference.

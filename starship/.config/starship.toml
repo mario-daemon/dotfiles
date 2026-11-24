@@ -1,0 +1,29 @@
+format = """
+$username$hostname$directory$character"""
+
+add_newline = false
+
+# Faster directory scanning and command execution
+scan_timeout = 10
+command_timeout = 100
+follow_symlinks = false
+
+[username]
+show_always = true
+style_user = "blue"
+format = "[$user]($style)[@]($style)"
+
+[hostname]
+ssh_only = false
+style = "blue"
+format = "[$hostname]($style) "
+
+[directory]
+truncation_length = 1
+truncate_to_repo = false
+style = "green"
+format = "[$path]($style) "
+
+[character]
+success_symbol = "\\$"
+error_symbol = "\\$"

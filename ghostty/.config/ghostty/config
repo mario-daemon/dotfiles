@@ -48,7 +48,7 @@
 # # Just for example:
 # resize-overlay-duration = 4s 200ms
 
-command = /usr/bin/zsh
+command = /usr/bin/bash
 
 # note-to-self: should start using a nerdfont at some point
 font-family = Hack
